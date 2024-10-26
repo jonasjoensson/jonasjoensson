@@ -1,11 +1,16 @@
+import { AppSidebar } from "./components/app-sidebar";
 import { Button } from "./components/ui/button";
+import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button variant="outline">test</Button>
-    </>
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        <Button>Hello</Button>
+      </main>
+    </SidebarProvider>
   );
 }
 
