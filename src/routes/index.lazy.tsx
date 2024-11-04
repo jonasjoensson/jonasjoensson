@@ -7,7 +7,9 @@ import { useState } from "react";
 type JsonLdData = Record<string, any>;
 
 async function fetchJsonLd(url: string): Promise<JsonLdData> {
-  const response = await fetch(url);
+  // TODO: Remove cors proxy, setup own proxy backend instead
+  const corsProxy = "https://corsproxy.io/?";
+  const response = await fetch(corsProxy + encodeURIComponent(url));
   const html = await response.text();
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, "text/html");
