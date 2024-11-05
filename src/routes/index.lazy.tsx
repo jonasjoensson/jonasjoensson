@@ -4,6 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
+export const Route = createLazyFileRoute("/")({
+  component: Index,
+});
+
 type JsonLdData = Record<string, any>;
 
 async function fetchJsonLd(url: string): Promise<JsonLdData> {
@@ -20,16 +24,55 @@ async function fetchJsonLd(url: string): Promise<JsonLdData> {
   return JSON.parse(jsonLdScript.textContent || "{}");
 }
 
-export const Route = createLazyFileRoute("/")({
-  component: Index,
-});
+const fetchRecipeData = async (url: string): Promise<JsonLdData | null> => {
+  const response = await fetch(url);
+  const text = await response.text();
+
+  // Use a DOMParser to parse the HTML and extract the JSON-LD script content
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(text, "text/html");
+  const scriptTag = doc.querySelector('script[type="application/ld+json"]');
+
+  if (scriptTag) {
+    try {
+      const jsonData = JSON.parse(scriptTag.innerHTML);
+      // Filter for recipe-related JSON-LD data
+      const recipeData =
+        jsonData["@type"] === "Recipe" ||
+        jsonData["@type"] === "HowTo" ||
+        jsonData["@type"] === "ItemList"
+          ? jsonData
+          : null;
+
+      if (recipeData) {
+        // Store in localStorage
+        localStorage.setItem("recipeData", JSON.stringify(recipeData));
+      }
+
+      return recipeData;
+    } catch (error) {
+      console.error("Error parsing JSON-LD:", error);
+      return null;
+    }
+  } else {
+    console.warn("No JSON-LD script tag found");
+    return null;
+  }
+};
+
+// Function to fetch Google Recipe structured data
+async function fetchGoogleRecipeData(url: string): Promise<JsonLdData> {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+}
 
 function Index() {
   const [url, setUrl] = useState("");
 
   const { data, error, isLoading, refetch } = useQuery<JsonLdData, Error>({
     queryKey: ["jsonLd", url],
-    queryFn: () => fetchJsonLd(url),
+    queryFn: () => fetchRecipeData(url),
     enabled: false,
   });
 
