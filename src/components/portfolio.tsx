@@ -19,7 +19,7 @@ const projects: Project[] = [
       "Created an app for people to get filmed by a drone - without owning a drone",
     imageUrl:
       "https://jonasberglund.github.io/assets/images/portfolio/web_flycam.jpg",
-    link: "https://ecotrack-app.com",
+    link: "https://www.sony.com/",
   },
   {
     title: "Design system | Nets",
@@ -46,19 +46,21 @@ const Portfolio = () => {
         </h2>
         <div className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-2">
           {projects.map((project) => (
-            <div key={project.title} className="flex gap-2">
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="h-16 w-16 rounded-lg object-cover"
-              />
-              <div>
-                <h3 className="text-sm font-bold">{project.title}</h3>
-                <p className="font-mono text-xs leading-none">
-                  {project.description}
-                </p>
+            <a key={project.title} href={project.link} target="_blank">
+              <div className="flex gap-2">
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="h-16 w-16 rounded-lg object-cover"
+                />
+                <div>
+                  <h3 className="text-sm font-bold">{project.title}</h3>
+                  <p className="font-mono text-xs leading-none">
+                    {project.description}
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
