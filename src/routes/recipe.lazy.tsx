@@ -40,18 +40,6 @@ export const Route = createLazyFileRoute("/recipe")({
 
 const queryClient = new QueryClient();
 
-async function fetchJsonLd(url: string): Promise<RecipeData> {
-  const corsProxy = "https://corsproxy.io/?";
-  const response = await fetch(corsProxy + encodeURIComponent(url));
-  if (!response.ok) {
-    throw new Error("Failed to fetch JSON-LD data");
-  }
-  const data = await response.json();
-  return (
-    data["@graph"]?.find((item: any) => item["@type"] === "Recipe") || data
-  );
-}
-
 const fetchRecipeData = async (url: string): Promise<RecipeData> => {
   const corsProxy = "https://corsproxy.io/?";
   const response = await fetch(corsProxy + encodeURIComponent(url));
@@ -95,7 +83,7 @@ function RecipePage() {
   };
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
+    <div className="mx-auto max-w-4xl p-4">
       <Head>
         {data && (
           <>
@@ -148,17 +136,17 @@ function RecipePage() {
       {error && <p className="text-red-500">Error: {error.message}</p>}
       {data && (
         <div className="mt-8">
-          <h1 className="text-3xl font-bold mb-4">{data.name}</h1>
+          <h1 className="mb-4 text-3xl font-bold">{data.name}</h1>
           <img
             src={data.image}
             alt={data.name}
-            className="w-full max-w-2xl mb-4 rounded-lg"
+            className="mb-4 w-full max-w-2xl rounded-lg"
           />
           <p className="mb-4">{data.description}</p>
 
           <div className="grid grid-cols-2 gap-8">
             <div>
-              <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
+              <h2 className="mb-2 text-2xl font-semibold">Ingredients</h2>
               <ul className="list-disc pl-5">
                 {data.recipeIngredient.map((ingredient, index) => (
                   <li key={index}>{ingredient}</li>
@@ -166,7 +154,7 @@ function RecipePage() {
               </ul>
             </div>
             <div>
-              <h2 className="text-2xl font-semibold mb-2">Directions</h2>
+              <h2 className="mb-2 text-2xl font-semibold">Directions</h2>
               <ol className="list-decimal pl-5">
                 {data.recipeInstructions.toString()}
                 {/* {data.recipeInstructions.map((instruction, index) => (
@@ -177,7 +165,7 @@ function RecipePage() {
           </div>
 
           <div className="mt-8">
-            <h2 className="text-2xl font-semibold mb-2">
+            <h2 className="mb-2 text-2xl font-semibold">
               Additional Information
             </h2>
             <p>
