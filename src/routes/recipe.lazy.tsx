@@ -15,7 +15,6 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import Head from "next/head";
 import { useState } from "react";
 
 type RecipeData = {
@@ -84,19 +83,6 @@ function RecipePage() {
 
   return (
     <div className="mx-auto max-w-4xl p-4">
-      <Head>
-        {data && (
-          <>
-            <title>{data.name}</title>
-            <meta name="description" content={data.description} />
-            <meta property="og:title" content={data.name} />
-            <meta property="og:description" content={data.description} />
-            <meta property="og:image" content={data.image} />
-            <script type="application/ld+json">{JSON.stringify(data)}</script>
-          </>
-        )}
-      </Head>
-
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button variant="outline">Fetch Recipe Data</Button>
