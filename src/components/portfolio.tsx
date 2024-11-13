@@ -1,5 +1,3 @@
-import { CardDescription, CardTitle } from "./ui/card";
-
 interface Project {
   title: string;
   description: string;
@@ -17,21 +15,22 @@ const projects: Project[] = [
   },
   {
     title: "Flying Camera Service | Sony",
-    description: "Get filmed by a drone - without owning a drone",
+    description:
+      "Created an app for people to get filmed by a drone - without owning a drone",
     imageUrl:
       "https://jonasberglund.github.io/assets/images/portfolio/web_flycam.jpg",
     link: "https://ecotrack-app.com",
   },
   {
     title: "Design system | Nets",
-    description: "Personal carbon footprint calculator",
+    description: "Help Nets to develop a design system",
     imageUrl:
-      "https://cdn.myportfolio.com/76e3e5a5-99b9-4181-9c14-87d4204c9641/1316d6e4-6c2c-46a4-a7cb-f732825ceac9_rw_1920.png?h=3ddad01ffb0fff2717ca8aaccb3034e8",
+      "https://utfs.io/f/sF52B4cUzCgZjMqzV4eBajpzrHYfMhTOX37UlWGo45It2Z0m",
     link: "https://www.nets.eu/Innovation",
   },
   {
     title: "Portfolio",
-    description: "Prev personal website",
+    description: "Previous personal website",
     imageUrl:
       "https://jonasberglund.github.io/assets/images/portfolio/app_dkv.jpg",
     link: "https://jonasberglund.github.io/#portfolio",
@@ -48,16 +47,16 @@ const Portfolio = () => {
         <div className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-2">
           {projects.map((project) => (
             <div key={project.title} className="flex gap-2">
+              <img
+                src={project.imageUrl}
+                alt={project.title}
+                className="h-16 w-16 rounded-lg object-cover"
+              />
               <div>
-                <img
-                  src={project.imageUrl}
-                  alt={project.title}
-                  className="h-16 w-16 rounded-lg object-cover"
-                />
-              </div>
-              <div>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
+                <h3 className="text-sm font-bold">{project.title}</h3>
+                <p className="font-mono text-xs leading-none">
+                  {project.description}
+                </p>
               </div>
             </div>
           ))}

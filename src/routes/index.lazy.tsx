@@ -8,7 +8,7 @@ export const Route = createLazyFileRoute("/")({
 
 function Index() {
   return (
-    <div className="mx-auto mt-32 flex h-full w-full max-w-3xl flex-col items-start justify-start p-2">
+    <div className="mx-auto flex h-full w-full max-w-3xl flex-col items-start justify-start p-2">
       <Hero />
       <Portfolio />
     </div>
