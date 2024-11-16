@@ -8,32 +8,27 @@ interface Project {
 const projects: Project[] = [
   {
     title: "SKYTTA | IKEA",
-    description: "Design your own sliding doors for any space",
-    imageUrl:
-      "https://www.ikea.com/ext/ingkadam/m/2a748b7ac33504a5/original/PE825311.jpg?f=xs",
-    link: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=sv-SE#/",
+    description: "3D web app for design your own sliding doors.",
+    imageUrl: "/src/assets/skytta.jpeg",
+    link: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/",
   },
   {
     title: "Flying Camera Service | Sony",
-    description:
-      "Created an app for people to get filmed by a drone - without owning a drone",
-    imageUrl:
-      "https://jonasberglund.github.io/assets/images/portfolio/web_flycam.jpg",
+    description: "Service for people to get filmed by a drone while skiing.",
+    imageUrl: "/src/assets/flycam.jpg",
     link: "https://www.sony.com/",
   },
   {
     title: "Design system | Nets",
-    description: "Help Nets to develop a design system",
-    imageUrl:
-      "https://utfs.io/f/sF52B4cUzCgZjMqzV4eBajpzrHYfMhTOX37UlWGo45It2Z0m",
+    description: "Help Nets to develop a design system.",
+    imageUrl: "/src/assets/nets.png",
     link: "https://www.nets.eu/Innovation",
   },
   {
     title: "Portfolio",
-    description: "Previous personal website",
-    imageUrl:
-      "https://jonasberglund.github.io/assets/images/portfolio/app_dkv.jpg",
-    link: "https://jonasberglund.github.io/#portfolio",
+    description: "Previous personal website.",
+    imageUrl: "/src/assets/dkv.jpg",
+    link: "https://jonasjoensson.github.io/#portfolio",
   },
 ];
 

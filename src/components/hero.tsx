@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div className="mt-16 md:mt-32">
       <img
-        src="https://utfs.io/f/sF52B4cUzCgZK36OPc7iMF8amXvsCdSD10ZuY3p4OTzbqRBt"
+        src="/src/assets/jonas.jpeg"
         alt="Jonas Jönsson"
         className="h-64 w-64 rounded-xl"
       />
@@ -15,7 +15,7 @@ const Hero = () => {
       <p className="text-l mb-2">Senior Web Developer | Malmö, Sweden</p>
       <div className="flex gap-2">
         <Button variant="default" size="sm" asChild>
-          <a href="https://github.com/jonasberglund">
+          <a href="https://github.com/jonasjoensson">
             <GitHubLogoIcon /> Github
           </a>
         </Button>
