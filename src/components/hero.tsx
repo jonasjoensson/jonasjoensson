@@ -1,11 +1,12 @@
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
+import heroImage from "/src/assets/jonas.jpeg";
 
 const Hero = () => {
   return (
     <div className="mt-16 md:mt-32">
       <img
-        src="/src/assets/jonas.jpeg"
+        src={heroImage}
         alt="Jonas Jönsson"
         className="h-64 w-64 rounded-xl"
       />
