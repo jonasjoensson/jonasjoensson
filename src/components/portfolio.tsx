@@ -5,29 +5,34 @@ interface Project {
   link: string;
 }
 
+import dkvImage from "../assets/dkv.jpg";
+import flycamImage from "../assets/flycam.jpg";
+import netsImage from "../assets/nets.png";
+import skyttaImage from "../assets/skytta.jpeg";
+
 const projects: Project[] = [
   {
     title: "SKYTTA | IKEA",
     description: "3D web app for design your own sliding doors.",
-    imageUrl: "/src/assets/skytta.jpeg",
+    imageUrl: skyttaImage,
     link: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/",
   },
   {
     title: "Flying Camera Service | Sony",
     description: "Service for people to get filmed by a drone while skiing.",
-    imageUrl: "/src/assets/flycam.jpg",
+    imageUrl: flycamImage,
     link: "https://www.sony.com/",
   },
   {
     title: "Design system | Nets",
     description: "Help Nets to develop a design system.",
-    imageUrl: "/src/assets/nets.png",
+    imageUrl: netsImage,
     link: "https://www.nets.eu/Innovation",
   },
   {
     title: "Portfolio",
     description: "Previous personal website.",
-    imageUrl: "/src/assets/dkv.jpg",
+    imageUrl: dkvImage,
     link: "https://jonasjoensson.github.io/#portfolio",
   },
 ];
