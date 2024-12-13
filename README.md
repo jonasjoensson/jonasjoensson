@@ -1,21 +1,13 @@
-# React + TypeScript + Vite
+### Hi, I'm Jonas 👋  
+I solve problems using the web 💻  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **Senior Web Developer based in Malmö** 🌍  
+  Crafting elegant solutions with a focus on user experience and performance.  
 
-While this project uses React, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
+- **Specialties** 🚀  
+  - Building modern web applications with **Next.js**, **React**, and **TypeScript**.  
+  - Clean, maintainable code with a passion for **best practices**.  
+  - Databases and schemas: **Prisma**, **Triplit**, and more.  
 
-## Deploy Your Own
-
-Deploy your own Vite project with Vercel.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/vite-react&template=vite-react)
-
-_Live Example: https://vite-react-example.vercel.app_
-
-### Deploying From Your Terminal
-
-You can deploy your new Vite project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
-
-```shell
-$ vercel
-```
+- **Let's Connect** 🤝  
+  Reach out to collaborate on open-source projects or chat about **web development** and **design systems**.  
