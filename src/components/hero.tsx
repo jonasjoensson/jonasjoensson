@@ -1,6 +1,6 @@
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
+import heroImage from "../assets/jonas.jpeg";
 import { Button } from "./ui/button";
-import heroImage from "/src/assets/jonas.jpeg";
 
 const Hero = () => {
   return (
