@@ -9,6 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  parseAsFloat,
+  parseAsInteger,
+  parseAsString,
+  useQueryState,
+} from "nuqs";
 
 export const Route = createFileRoute("/mortgage_calculator")({
   component: MortgageCalculator,
@@ -31,11 +37,26 @@ type LoanResult = {
 };
 
 function MortgageCalculator() {
-  const [loanAmount, setLoanAmount] = useState<number>(3000000);
-  const [interestRate, setInterestRate] = useState<number>(3.0);
-  const [monthlyAmortization, setMonthlyAmortization] = useState<number>(10000);
-  const [birthYear, setBirthYear] = useState<number>(1990);
-  const [birthMonth, setBirthMonth] = useState<string>("1");
+  const [loanAmount, setLoanAmount] = useQueryState(
+    "loanAmount",
+    parseAsInteger.withDefault(3000000)
+  );
+  const [interestRate, setInterestRate] = useQueryState(
+    "interestRate",
+    parseAsFloat.withDefault(3)
+  );
+  const [monthlyAmortization, setMonthlyAmortization] = useQueryState(
+    "monthlyAmortization",
+    parseAsInteger.withDefault(10000)
+  );
+  const [birthYear, setBirthYear] = useQueryState(
+    "birthYear",
+    parseAsInteger.withDefault(1990)
+  );
+  const [birthMonth, setBirthMonth] = useQueryState(
+    "birthMonth",
+    parseAsString.withDefault("1")
+  );
   const [results, setResults] = useState<LoanResult[]>([]);
 
   const calculateLoanPayoff = (
