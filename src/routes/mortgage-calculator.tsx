@@ -16,7 +16,7 @@ import {
   useQueryState,
 } from "nuqs";
 
-export const Route = createFileRoute("/mortgage_calculator")({
+export const Route = createFileRoute("/mortgage-calculator")({
   component: MortgageCalculator,
 });
 

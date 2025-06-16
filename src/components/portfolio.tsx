@@ -1,49 +1,53 @@
-interface Project {
-  title: string;
-  description: string;
-  imageUrl: string;
-  link: string;
-  hidden?: boolean;
-}
-
-import { Link } from "@tanstack/react-router";
+import { LinkOptions } from "@tanstack/react-router";
 import dkvImage from "../assets/dkv.jpg";
 import flycamImage from "../assets/flycam.jpg";
 import netsImage from "../assets/nets.png";
 import skyttaImage from "../assets/skytta.jpeg";
 import placeholder from "../assets/jonas.jpeg";
 import { parseAsBoolean, useQueryState } from "nuqs";
+import { SmartLink } from "./smart-link";
+
+type Project = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  href?: string;
+  linkOptions?: LinkOptions;
+  hidden?: boolean;
+};
 
 const projects: Project[] = [
   {
     title: "SKYTTA | IKEA",
     description: "3D web app for design your own sliding doors.",
     imageUrl: skyttaImage,
-    link: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/",
+    href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/",
   },
   {
     title: "Flying Camera Service | Sony",
     description: "Service for people to get filmed by a drone while skiing.",
     imageUrl: flycamImage,
-    link: "https://www.sony.com/",
+    href: "https://www.sony.com/",
   },
   {
     title: "Design system | Nets",
     description: "Help Nets to develop a design system.",
     imageUrl: netsImage,
-    link: "https://www.nets.eu/Innovation",
+    href: "https://www.nets.eu/Innovation",
   },
   {
     title: "Portfolio",
     description: "Previous personal website.",
     imageUrl: dkvImage,
-    link: "https://jonasjoensson.github.io/#portfolio",
+    href: "https://jonasjoensson.github.io/#portfolio",
   },
   {
     title: "Mortgage Calculator",
     description: "A simple mortgage calculator built with React.",
     imageUrl: placeholder,
-    link: "/mortgage_calculator",
+    linkOptions: {
+      to: "/mortgage-calculator",
+    },
     hidden: true, // This project is hidden
   },
 ];
@@ -67,7 +71,7 @@ const Portfolio = () => {
             }
 
             return (
-              <Link to={project.link} key={project.title}>
+              <SmartLink linkOptions={project.linkOptions} key={project.title}>
                 <div className="flex gap-2">
                   <img
                     src={project.imageUrl}
@@ -81,7 +85,7 @@ const Portfolio = () => {
                     </p>
                   </div>
                 </div>
-              </Link>
+              </SmartLink>
             );
           })}
         </div>
