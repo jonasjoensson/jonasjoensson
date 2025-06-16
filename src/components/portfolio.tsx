@@ -3,14 +3,15 @@ import dkvImage from "../assets/dkv.jpg";
 import flycamImage from "../assets/flycam.jpg";
 import netsImage from "../assets/nets.png";
 import skyttaImage from "../assets/skytta.jpeg";
-import placeholder from "../assets/jonas.jpeg";
 import { parseAsBoolean, useQueryState } from "nuqs";
 import { SmartLink } from "./smart-link";
+import { Home } from "lucide-react";
 
 type Project = {
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
+  icon?: React.ComponentType<{ className?: string; size?: string | number }>;
   href?: string;
   linkOptions?: LinkOptions;
   hidden?: boolean;
@@ -44,10 +45,10 @@ const projects: Project[] = [
   {
     title: "Mortgage Calculator",
     description: "A simple mortgage calculator built with React.",
-    imageUrl: placeholder,
     linkOptions: {
       to: "/mortgage-calculator",
     },
+    icon: Home,
     hidden: true, // This project is hidden
   },
 ];
@@ -73,11 +74,18 @@ const Portfolio = () => {
             return (
               <SmartLink linkOptions={project.linkOptions} key={project.title}>
                 <div className="flex gap-2">
-                  <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    className="h-16 w-16 rounded-lg object-cover"
-                  />
+                  {project.imageUrl && (
+                    <img
+                      src={project.imageUrl}
+                      alt={project.title}
+                      className="h-16 w-16 rounded-lg object-cover"
+                    />
+                  )}
+                  {project.icon && (
+                    <div className="flex h-16 w-16 items-center justify-center rounded-lg">
+                      <project.icon className="text-blue-600" size={32} />
+                    </div>
+                  )}
                   <div>
                     <h3 className="text-sm font-bold">{project.title}</h3>
                     <p className="font-mono text-xs leading-none">

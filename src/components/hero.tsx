@@ -15,7 +15,7 @@ const Hero = () => {
         src={heroImage}
         alt="Jonas Jönsson"
         className="h-64 w-64 rounded-xl"
-        onDoubleClick={() => setShowHidden(!showHidden)}
+        onClick={() => setShowHidden(!showHidden)}
       />
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight">
         Jonas Jönsson
