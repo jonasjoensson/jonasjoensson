@@ -3,12 +3,16 @@ interface Project {
   description: string;
   imageUrl: string;
   link: string;
+  hidden?: boolean;
 }
 
+import { Link } from "@tanstack/react-router";
 import dkvImage from "../assets/dkv.jpg";
 import flycamImage from "../assets/flycam.jpg";
 import netsImage from "../assets/nets.png";
 import skyttaImage from "../assets/skytta.jpeg";
+import placeholder from "../assets/jonas.jpeg";
+import { parseAsBoolean, useQueryState } from "nuqs";
 
 const projects: Project[] = [
   {
@@ -35,9 +39,21 @@ const projects: Project[] = [
     imageUrl: dkvImage,
     link: "https://jonasjoensson.github.io/#portfolio",
   },
+  {
+    title: "Mortgage Calculator",
+    description: "A simple mortgage calculator built with React.",
+    imageUrl: placeholder,
+    link: "/mortgage_calculator",
+    hidden: true, // This project is hidden
+  },
 ];
 
 const Portfolio = () => {
+  const [showHidden] = useQueryState(
+    "showHidden",
+    parseAsBoolean.withDefault(false)
+  );
+
   return (
     <section id="portfolio" className="mt-20">
       <div className="flex flex-col gap-2">
@@ -45,23 +61,29 @@ const Portfolio = () => {
           Projects
         </h2>
         <div className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-2">
-          {projects.map((project) => (
-            <a key={project.title} href={project.link} target="_blank">
-              <div className="flex gap-2">
-                <img
-                  src={project.imageUrl}
-                  alt={project.title}
-                  className="h-16 w-16 rounded-lg object-cover"
-                />
-                <div>
-                  <h3 className="text-sm font-bold">{project.title}</h3>
-                  <p className="font-mono text-xs leading-none">
-                    {project.description}
-                  </p>
+          {projects.map((project) => {
+            if (project.hidden && !showHidden) {
+              return null; // Skip hidden projects
+            }
+
+            return (
+              <Link to={project.link} key={project.title}>
+                <div className="flex gap-2">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="h-16 w-16 rounded-lg object-cover"
+                  />
+                  <div>
+                    <h3 className="text-sm font-bold">{project.title}</h3>
+                    <p className="font-mono text-xs leading-none">
+                      {project.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
