@@ -6,15 +6,35 @@ export const Route = createFileRoute("/mortgage_calculator")({
   component: MortgageCalculator,
 });
 
-function MortgageCalculator() {
-  const [loanAmount, setLoanAmount] = useState(3000000);
-  const [interestRate, setInterestRate] = useState(3.0);
-  const [monthlyAmortization, setMonthlyAmortization] = useState(10000);
-  const [birthYear, setBirthYear] = useState(1990);
-  const [birthMonth, setBirthMonth] = useState(1);
-  const [results, setResults] = useState([]);
+type LoanResult = {
+  months?: number;
+  years?: number;
+  remainingMonths?: number;
+  payoffDate?: Date;
+  totalInterest?: number;
+  totalPaid?: number;
+  ageAtPayoff?: number;
+  amortization: number;
+  avgMonthlyInterest?: number;
+  avgMonthlyPayment?: number;
+  initialMonthlyInterest?: number;
+  initialTotalPayment?: number;
+  error?: string;
+};
 
-  const calculateLoanPayoff = (principal, rate, amortization) => {
+function MortgageCalculator() {
+  const [loanAmount, setLoanAmount] = useState<number>(3000000);
+  const [interestRate, setInterestRate] = useState<number>(3.0);
+  const [monthlyAmortization, setMonthlyAmortization] = useState<number>(10000);
+  const [birthYear, setBirthYear] = useState<number>(1990);
+  const [birthMonth, setBirthMonth] = useState<number>(1);
+  const [results, setResults] = useState<LoanResult[]>([]);
+
+  const calculateLoanPayoff = (
+    principal: number,
+    rate: number,
+    amortization: number
+  ): LoanResult | null => {
     if (amortization <= 0) return null;
 
     const monthlyRate = rate / 100 / 12;
@@ -37,7 +57,7 @@ function MortgageCalculator() {
     }
 
     if (months >= 600) {
-      return { error: "Lånet tar mer än 50 år att betala av" };
+      return { amortization, error: "Lånet tar mer än 50 år att betala av" };
     }
 
     const payoffDate = new Date();
@@ -79,12 +99,13 @@ function MortgageCalculator() {
         interestRate,
         amortization
       );
-      return { amortization, ...result };
+      return { amortization, ...(result ?? {}) };
     });
     setResults(newResults);
   }, [loanAmount, interestRate, birthYear, birthMonth]);
 
-  const formatCurrency = (amount) => {
+  const formatCurrency = (amount: number | undefined) => {
+    if (typeof amount !== "number") return "-";
     return new Intl.NumberFormat("sv-SE", {
       style: "currency",
       currency: "SEK",
@@ -93,7 +114,8 @@ function MortgageCalculator() {
     }).format(amount);
   };
 
-  const formatDate = (date) => {
+  const formatDate = (date: Date | undefined) => {
+    if (!(date instanceof Date) || isNaN(date.getTime())) return "-";
     return date.toLocaleDateString("sv-SE", {
       year: "numeric",
       month: "long",
@@ -130,6 +152,7 @@ function MortgageCalculator() {
                 <input
                   type="number"
                   value={loanAmount}
+                  step={10000}
                   onChange={(e) => setLoanAmount(Number(e.target.value))}
                   className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -141,7 +164,7 @@ function MortgageCalculator() {
                 </label>
                 <input
                   type="number"
-                  step="0.1"
+                  step={0.1}
                   value={interestRate}
                   onChange={(e) => setInterestRate(Number(e.target.value))}
                   className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -154,6 +177,7 @@ function MortgageCalculator() {
                 </label>
                 <input
                   type="number"
+                  step={1000}
                   value={monthlyAmortization}
                   onChange={(e) =>
                     setMonthlyAmortization(Number(e.target.value))
@@ -341,7 +365,7 @@ function MortgageCalculator() {
                     </td>
                     {result.error ? (
                       <td
-                        colSpan="5"
+                        colSpan={5}
                         className="border border-gray-300 px-4 py-3 text-red-600"
                       >
                         {result.error}
