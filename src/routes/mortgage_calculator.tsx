@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { Calculator, Home, Calendar, User } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const Route = createFileRoute("/mortgage_calculator")({
   component: MortgageCalculator,
@@ -27,7 +35,7 @@ function MortgageCalculator() {
   const [interestRate, setInterestRate] = useState<number>(3.0);
   const [monthlyAmortization, setMonthlyAmortization] = useState<number>(10000);
   const [birthYear, setBirthYear] = useState<number>(1990);
-  const [birthMonth, setBirthMonth] = useState<number>(1);
+  const [birthMonth, setBirthMonth] = useState<string>("1");
   const [results, setResults] = useState<LoanResult[]>([]);
 
   const calculateLoanPayoff = (
@@ -67,7 +75,7 @@ function MortgageCalculator() {
     const ageAtPayoff =
       payoffDate.getFullYear() -
       birthYear +
-      (payoffDate.getMonth() + 1 >= birthMonth ? 0 : -1);
+      (payoffDate.getMonth() + 1 >= Number(birthMonth) ? 0 : -1);
 
     // Beräkna genomsnittlig månadsränta och total månadsbetaling
     const avgMonthlyInterest = totalInterest / months;
@@ -149,7 +157,7 @@ function MortgageCalculator() {
                 <label className="mb-2 block text-sm font-medium text-gray-700">
                   Lånebelopp (SEK)
                 </label>
-                <input
+                <Input
                   type="number"
                   value={loanAmount}
                   step={10000}
@@ -162,7 +170,7 @@ function MortgageCalculator() {
                 <label className="mb-2 block text-sm font-medium text-gray-700">
                   Ränta (% per år)
                 </label>
-                <input
+                <Input
                   type="number"
                   step={0.1}
                   value={interestRate}
@@ -175,7 +183,7 @@ function MortgageCalculator() {
                 <label className="mb-2 block text-sm font-medium text-gray-700">
                   Månatlig amortering (SEK)
                 </label>
-                <input
+                <Input
                   type="number"
                   step={1000}
                   value={monthlyAmortization}
@@ -203,7 +211,7 @@ function MortgageCalculator() {
                 <label className="mb-2 block text-sm font-medium text-gray-700">
                   Födelseår
                 </label>
-                <input
+                <Input
                   type="number"
                   value={birthYear}
                   onChange={(e) => setBirthYear(Number(e.target.value))}
@@ -215,19 +223,23 @@ function MortgageCalculator() {
                 <label className="mb-2 block text-sm font-medium text-gray-700">
                   Födelsemånad
                 </label>
-                <select
+                <Select
+                  onValueChange={(value) => setBirthMonth(value)}
                   value={birthMonth}
-                  onChange={(e) => setBirthMonth(Number(e.target.value))}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <option key={i + 1} value={i + 1}>
-                      {new Date(2000, i).toLocaleDateString("sv-SE", {
-                        month: "long",
-                      })}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger className="w-full]">
+                    <SelectValue placeholder="Månad" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Array.from({ length: 12 }, (_, i) => (
+                      <SelectItem key={i + 1} value={String(i + 1)}>
+                        {new Date(2000, i).toLocaleDateString("sv-SE", {
+                          month: "long",
+                        })}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="pt-4">
