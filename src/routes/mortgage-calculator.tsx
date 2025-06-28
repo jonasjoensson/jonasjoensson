@@ -158,7 +158,7 @@ function MortgageCalculator() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen w-full bg-linear-to-br from-blue-50 to-indigo-100">
       <div className="mx-auto max-w-6xl p-6">
         <div className="rounded-xl bg-white p-8 shadow-xl">
           <div className="mb-8 flex items-center">
@@ -186,7 +186,7 @@ function MortgageCalculator() {
                     value={loanAmount}
                     step={10000}
                     onChange={(e) => setLoanAmount(Number(e.target.value))}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
@@ -199,7 +199,7 @@ function MortgageCalculator() {
                     step={0.1}
                     value={interestRate}
                     onChange={(e) => setInterestRate(Number(e.target.value))}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
@@ -214,7 +214,7 @@ function MortgageCalculator() {
                     onChange={(e) =>
                       setMonthlyAmortization(Number(e.target.value))
                     }
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                   />
                   <p className="mt-1 text-xs text-gray-500">
                     Endast amortering - ränta läggs till automatiskt
@@ -239,7 +239,7 @@ function MortgageCalculator() {
                     type="number"
                     value={birthYear}
                     onChange={(e) => setBirthYear(Number(e.target.value))}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
