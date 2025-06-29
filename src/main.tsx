@@ -32,6 +32,6 @@ if (!rootElement.innerHTML) {
           <RouterProvider router={router} />
         </QueryClientProvider>
       </NuqsAdapter>
-    </StrictMode>
+    </StrictMode>,
   );
 }

@@ -56,7 +56,7 @@ const projects: Project[] = [
 const Portfolio = () => {
   const [showHidden] = useQueryState(
     "showHidden",
-    parseAsBoolean.withDefault(false)
+    parseAsBoolean.withDefault(false),
   );
 
   return (

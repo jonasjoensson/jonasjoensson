@@ -1,6 +1,12 @@
-import { useState, useEffect } from "react";
-import { Calculator, Home, Calendar, User } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Calculator, Calendar, Home, User } from "lucide-react";
+import {
+  parseAsFloat,
+  parseAsInteger,
+  parseAsString,
+  useQueryState,
+} from "nuqs";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -9,12 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  parseAsFloat,
-  parseAsInteger,
-  parseAsString,
-  useQueryState,
-} from "nuqs";
 
 export const Route = createFileRoute("/mortgage-calculator")({
   component: MortgageCalculator,
@@ -39,30 +39,30 @@ type LoanResult = {
 function MortgageCalculator() {
   const [loanAmount, setLoanAmount] = useQueryState(
     "loanAmount",
-    parseAsInteger.withDefault(2990000)
+    parseAsInteger.withDefault(2990000),
   );
   const [interestRate, setInterestRate] = useQueryState(
     "interestRate",
-    parseAsFloat.withDefault(3.04)
+    parseAsFloat.withDefault(3.04),
   );
   const [monthlyAmortization, setMonthlyAmortization] = useQueryState(
     "monthlyAmortization",
-    parseAsInteger.withDefault(8000)
+    parseAsInteger.withDefault(8000),
   );
   const [birthYear, setBirthYear] = useQueryState(
     "birthYear",
-    parseAsInteger.withDefault(1990)
+    parseAsInteger.withDefault(1990),
   );
   const [birthMonth, setBirthMonth] = useQueryState(
     "birthMonth",
-    parseAsString.withDefault("1")
+    parseAsString.withDefault("1"),
   );
   const [results, setResults] = useState<LoanResult[]>([]);
 
   const calculateLoanPayoff = (
     principal: number,
     rate: number,
-    amortization: number
+    amortization: number,
   ): LoanResult | null => {
     if (amortization <= 0) return null;
 
@@ -126,7 +126,7 @@ function MortgageCalculator() {
       const result = calculateLoanPayoff(
         loanAmount,
         interestRate,
-        amortization
+        amortization,
       );
       return { amortization, ...(result ?? {}) };
     });
@@ -154,7 +154,7 @@ function MortgageCalculator() {
   const customResult = calculateLoanPayoff(
     loanAmount,
     interestRate,
-    monthlyAmortization
+    monthlyAmortization,
   );
 
   return (

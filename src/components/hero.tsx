@@ -6,7 +6,7 @@ import { parseAsBoolean, useQueryState } from "nuqs";
 const Hero = () => {
   const [showHidden, setShowHidden] = useQueryState(
     "showHidden",
-    parseAsBoolean.withDefault(false)
+    parseAsBoolean.withDefault(false),
   );
 
   return (
