@@ -72,7 +72,11 @@ const Portfolio = () => {
             }
 
             return (
-              <SmartLink linkOptions={project.linkOptions} key={project.title}>
+              <SmartLink
+                key={project.title}
+                href={project.href}
+                linkOptions={project.linkOptions}
+              >
                 <div className="flex gap-2">
                   {project.imageUrl && (
                     <img
