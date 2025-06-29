@@ -6,14 +6,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
+  useQuery
 } from "@tanstack/react-query"
 import { useState } from "react"
 
@@ -34,7 +34,7 @@ type RecipeData = {
 import { createLazyFileRoute } from "@tanstack/react-router"
 
 export const Route = createLazyFileRoute("/recipe")({
-  component: RecipePage,
+  component: RecipePage
 })
 
 const queryClient = new QueryClient()
@@ -73,7 +73,7 @@ function RecipePage() {
   const { data, error, isLoading, refetch } = useQuery<RecipeData, Error>({
     queryKey: ["recipe", url],
     queryFn: () => fetchRecipeData(url),
-    enabled: false,
+    enabled: false
   })
 
   const handleSubmit = (e: React.FormEvent) => {

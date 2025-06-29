@@ -4,7 +4,7 @@ import {
   parseAsFloat,
   parseAsInteger,
   parseAsString,
-  useQueryState,
+  useQueryState
 } from "nuqs"
 import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
@@ -13,11 +13,11 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from "@/components/ui/select"
 
 export const Route = createFileRoute("/mortgage-calculator")({
-  component: MortgageCalculator,
+  component: MortgageCalculator
 })
 
 type LoanResult = {
@@ -39,30 +39,30 @@ type LoanResult = {
 function MortgageCalculator() {
   const [loanAmount, setLoanAmount] = useQueryState(
     "loanAmount",
-    parseAsInteger.withDefault(2990000),
+    parseAsInteger.withDefault(2990000)
   )
   const [interestRate, setInterestRate] = useQueryState(
     "interestRate",
-    parseAsFloat.withDefault(3.04),
+    parseAsFloat.withDefault(3.04)
   )
   const [monthlyAmortization, setMonthlyAmortization] = useQueryState(
     "monthlyAmortization",
-    parseAsInteger.withDefault(8000),
+    parseAsInteger.withDefault(8000)
   )
   const [birthYear, setBirthYear] = useQueryState(
     "birthYear",
-    parseAsInteger.withDefault(1990),
+    parseAsInteger.withDefault(1990)
   )
   const [birthMonth, setBirthMonth] = useQueryState(
     "birthMonth",
-    parseAsString.withDefault("1"),
+    parseAsString.withDefault("1")
   )
   const [results, setResults] = useState<LoanResult[]>([])
 
   const calculateLoanPayoff = (
     principal: number,
     rate: number,
-    amortization: number,
+    amortization: number
   ): LoanResult | null => {
     if (amortization <= 0) return null
 
@@ -116,7 +116,7 @@ function MortgageCalculator() {
       avgMonthlyInterest,
       avgMonthlyPayment,
       initialMonthlyInterest,
-      initialTotalPayment,
+      initialTotalPayment
     }
   }
 
@@ -135,7 +135,7 @@ function MortgageCalculator() {
       style: "currency",
       currency: "SEK",
       minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      maximumFractionDigits: 0
     }).format(amount)
   }
 
@@ -143,14 +143,14 @@ function MortgageCalculator() {
     if (!(date instanceof Date) || isNaN(date.getTime())) return "-"
     return date.toLocaleDateString("sv-SE", {
       year: "numeric",
-      month: "long",
+      month: "long"
     })
   }
 
   const customResult = calculateLoanPayoff(
     loanAmount,
     interestRate,
-    monthlyAmortization,
+    monthlyAmortization
   )
 
   return (
@@ -254,7 +254,7 @@ function MortgageCalculator() {
                       {Array.from({ length: 12 }, (_, i) => (
                         <SelectItem key={i + 1} value={String(i + 1)}>
                           {new Date(2000, i).toLocaleDateString("sv-SE", {
-                            month: "long",
+                            month: "long"
                           })}
                         </SelectItem>
                       ))}

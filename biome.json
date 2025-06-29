@@ -40,7 +40,8 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "double",
-      "semicolons": "asNeeded"
+      "semicolons": "asNeeded",
+      "trailingCommas": "none"
     }
   },
   "assist": {

@@ -22,41 +22,41 @@ const projects: Project[] = [
     title: "SKYTTA | IKEA",
     description: "3D web app for design your own sliding doors.",
     imageUrl: skyttaImage,
-    href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/",
+    href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/"
   },
   {
     title: "Flying Camera Service | Sony",
     description: "Service for people to get filmed by a drone while skiing.",
     imageUrl: flycamImage,
-    href: "https://www.sony.com/",
+    href: "https://www.sony.com/"
   },
   {
     title: "Design system | Nets",
     description: "Help Nets to develop a design system.",
     imageUrl: netsImage,
-    href: "https://www.nets.eu/Innovation",
+    href: "https://www.nets.eu/Innovation"
   },
   {
     title: "Portfolio",
     description: "Previous personal website.",
     imageUrl: dkvImage,
-    href: "https://jonasjoensson.github.io/#portfolio",
+    href: "https://jonasjoensson.github.io/#portfolio"
   },
   {
     title: "Mortgage Calculator",
     description: "A simple mortgage calculator built with React.",
     linkOptions: {
-      to: "/mortgage-calculator",
+      to: "/mortgage-calculator"
     },
     icon: Home,
-    hidden: true, // This project is hidden
-  },
+    hidden: true // This project is hidden
+  }
 ]
 
 const Portfolio = () => {
   const [showHidden] = useQueryState(
     "showHidden",
-    parseAsBoolean.withDefault(false),
+    parseAsBoolean.withDefault(false)
   )
 
   return (

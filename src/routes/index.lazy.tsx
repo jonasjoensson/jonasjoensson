@@ -3,7 +3,7 @@ import Hero from "@/components/hero"
 import Portfolio from "@/components/portfolio"
 
 export const Route = createLazyFileRoute("/")({
-  component: Index,
+  component: Index
 })
 
 function Index() {

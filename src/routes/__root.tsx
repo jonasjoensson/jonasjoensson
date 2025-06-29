@@ -11,5 +11,5 @@ export const Route = createRootRoute({
       {/* <TanStackRouterDevtools /> */}
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
-  ),
+  )
 })
