@@ -1,12 +1,12 @@
-import { Link, LinkOptions } from "@tanstack/react-router";
+import { Link, LinkOptions } from "@tanstack/react-router"
 
 type SmartLinkProps = {
-  linkOptions?: LinkOptions;
-  href?: string;
-  children: React.ReactNode;
-  className?: string;
-  target?: string;
-};
+  linkOptions?: LinkOptions
+  href?: string
+  children: React.ReactNode
+  className?: string
+  target?: string
+}
 
 export function SmartLink({
   href,
@@ -27,12 +27,12 @@ export function SmartLink({
       >
         {children}
       </a>
-    );
+    )
   }
 
   return (
     <Link {...linkOptions} className={className} {...props}>
       {children}
     </Link>
-  );
+  )
 }

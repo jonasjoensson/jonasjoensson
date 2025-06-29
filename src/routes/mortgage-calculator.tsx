@@ -1,108 +1,108 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Calculator, Calendar, Home, User } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router"
+import { Calculator, Calendar, Home, User } from "lucide-react"
 import {
   parseAsFloat,
   parseAsInteger,
   parseAsString,
   useQueryState,
-} from "nuqs";
-import { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
+} from "nuqs"
+import { useEffect, useState } from "react"
+import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select"
 
 export const Route = createFileRoute("/mortgage-calculator")({
   component: MortgageCalculator,
-});
+})
 
 type LoanResult = {
-  months?: number;
-  years?: number;
-  remainingMonths?: number;
-  payoffDate?: Date;
-  totalInterest?: number;
-  totalPaid?: number;
-  ageAtPayoff?: number;
-  amortization: number;
-  avgMonthlyInterest?: number;
-  avgMonthlyPayment?: number;
-  initialMonthlyInterest?: number;
-  initialTotalPayment?: number;
-  error?: string;
-};
+  months?: number
+  years?: number
+  remainingMonths?: number
+  payoffDate?: Date
+  totalInterest?: number
+  totalPaid?: number
+  ageAtPayoff?: number
+  amortization: number
+  avgMonthlyInterest?: number
+  avgMonthlyPayment?: number
+  initialMonthlyInterest?: number
+  initialTotalPayment?: number
+  error?: string
+}
 
 function MortgageCalculator() {
   const [loanAmount, setLoanAmount] = useQueryState(
     "loanAmount",
     parseAsInteger.withDefault(2990000),
-  );
+  )
   const [interestRate, setInterestRate] = useQueryState(
     "interestRate",
     parseAsFloat.withDefault(3.04),
-  );
+  )
   const [monthlyAmortization, setMonthlyAmortization] = useQueryState(
     "monthlyAmortization",
     parseAsInteger.withDefault(8000),
-  );
+  )
   const [birthYear, setBirthYear] = useQueryState(
     "birthYear",
     parseAsInteger.withDefault(1990),
-  );
+  )
   const [birthMonth, setBirthMonth] = useQueryState(
     "birthMonth",
     parseAsString.withDefault("1"),
-  );
-  const [results, setResults] = useState<LoanResult[]>([]);
+  )
+  const [results, setResults] = useState<LoanResult[]>([])
 
   const calculateLoanPayoff = (
     principal: number,
     rate: number,
     amortization: number,
   ): LoanResult | null => {
-    if (amortization <= 0) return null;
+    if (amortization <= 0) return null
 
-    const monthlyRate = rate / 100 / 12;
+    const monthlyRate = rate / 100 / 12
 
-    let balance = principal;
-    let months = 0;
-    let totalInterest = 0;
-    let totalPayment = 0;
+    let balance = principal
+    let months = 0
+    let totalInterest = 0
+    let totalPayment = 0
 
     while (balance > 0 && months < 600) {
       // Max 50 år
-      const interestPayment = balance * monthlyRate;
-      const principalPayment = Math.min(amortization, balance);
-      const monthlyTotal = interestPayment + principalPayment;
+      const interestPayment = balance * monthlyRate
+      const principalPayment = Math.min(amortization, balance)
+      const monthlyTotal = interestPayment + principalPayment
 
-      balance -= principalPayment;
-      totalInterest += interestPayment;
-      totalPayment += monthlyTotal;
-      months++;
+      balance -= principalPayment
+      totalInterest += interestPayment
+      totalPayment += monthlyTotal
+      months++
     }
 
     if (months >= 600) {
-      return { amortization, error: "Lånet tar mer än 50 år att betala av" };
+      return { amortization, error: "Lånet tar mer än 50 år att betala av" }
     }
 
-    const payoffDate = new Date();
-    payoffDate.setMonth(payoffDate.getMonth() + months);
+    const payoffDate = new Date()
+    payoffDate.setMonth(payoffDate.getMonth() + months)
 
     // Beräkna ålder vid avbetalning
     const ageAtPayoff =
       payoffDate.getFullYear() -
       birthYear +
-      (payoffDate.getMonth() + 1 >= Number(birthMonth) ? 0 : -1);
+      (payoffDate.getMonth() + 1 >= Number(birthMonth) ? 0 : -1)
 
     // Beräkna genomsnittlig månadsränta och total månadsbetaling
-    const avgMonthlyInterest = totalInterest / months;
-    const avgMonthlyPayment = amortization + avgMonthlyInterest;
-    const initialMonthlyInterest = principal * monthlyRate;
-    const initialTotalPayment = amortization + initialMonthlyInterest;
+    const avgMonthlyInterest = totalInterest / months
+    const avgMonthlyPayment = amortization + avgMonthlyInterest
+    const initialMonthlyInterest = principal * monthlyRate
+    const initialTotalPayment = amortization + initialMonthlyInterest
 
     return {
       months,
@@ -117,45 +117,41 @@ function MortgageCalculator() {
       avgMonthlyPayment,
       initialMonthlyInterest,
       initialTotalPayment,
-    };
-  };
+    }
+  }
 
   useEffect(() => {
-    const amortizations = [5000, 8000, 10000, 15000, 20000];
+    const amortizations = [5000, 8000, 10000, 15000, 20000]
     const newResults = amortizations.map((amortization) => {
-      const result = calculateLoanPayoff(
-        loanAmount,
-        interestRate,
-        amortization,
-      );
-      return { amortization, ...(result ?? {}) };
-    });
-    setResults(newResults);
-  }, [loanAmount, interestRate, birthYear, birthMonth]);
+      const result = calculateLoanPayoff(loanAmount, interestRate, amortization)
+      return { amortization, ...(result ?? {}) }
+    })
+    setResults(newResults)
+  }, [loanAmount, interestRate, birthYear, birthMonth])
 
   const formatCurrency = (amount: number | undefined) => {
-    if (typeof amount !== "number") return "-";
+    if (typeof amount !== "number") return "-"
     return new Intl.NumberFormat("sv-SE", {
       style: "currency",
       currency: "SEK",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(amount);
-  };
+    }).format(amount)
+  }
 
   const formatDate = (date: Date | undefined) => {
-    if (!(date instanceof Date) || isNaN(date.getTime())) return "-";
+    if (!(date instanceof Date) || isNaN(date.getTime())) return "-"
     return date.toLocaleDateString("sv-SE", {
       year: "numeric",
       month: "long",
-    });
-  };
+    })
+  }
 
   const customResult = calculateLoanPayoff(
     loanAmount,
     interestRate,
     monthlyAmortization,
-  );
+  )
 
   return (
     <div className="min-h-screen w-full bg-linear-to-br from-blue-50 to-indigo-100">
@@ -461,5 +457,5 @@ function MortgageCalculator() {
         </div>
       </div>
     </div>
-  );
+  )
 }

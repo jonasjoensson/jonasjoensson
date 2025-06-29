@@ -1,13 +1,13 @@
-import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import heroImage from "../assets/jonas.jpeg";
-import { Button } from "./ui/button";
-import { parseAsBoolean, useQueryState } from "nuqs";
+import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons"
+import { parseAsBoolean, useQueryState } from "nuqs"
+import heroImage from "../assets/jonas.jpeg"
+import { Button } from "./ui/button"
 
 const Hero = () => {
   const [showHidden, setShowHidden] = useQueryState(
     "showHidden",
     parseAsBoolean.withDefault(false),
-  );
+  )
 
   return (
     <div className="mt-16 md:mt-32">
@@ -34,7 +34,7 @@ const Hero = () => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
