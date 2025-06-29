@@ -1,5 +1,5 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
-import { Analytics } from "@vercel/analytics/react";
+import { createRootRoute, Outlet } from "@tanstack/react-router"
+import { Analytics } from "@vercel/analytics/react"
 
 export const Route = createRootRoute({
   component: () => (
@@ -11,5 +11,5 @@ export const Route = createRootRoute({
       {/* <TanStackRouterDevtools /> */}
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
-  ),
-});
+  )
+})

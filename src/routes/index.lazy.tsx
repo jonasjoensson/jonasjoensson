@@ -1,10 +1,10 @@
-import Hero from "@/components/hero";
-import Portfolio from "@/components/portfolio";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute } from "@tanstack/react-router"
+import Hero from "@/components/hero"
+import Portfolio from "@/components/portfolio"
 
 export const Route = createLazyFileRoute("/")({
-  component: Index,
-});
+  component: Index
+})
 
 function Index() {
   return (
@@ -12,5 +12,5 @@ function Index() {
       <Hero />
       <Portfolio />
     </div>
-  );
+  )
 }

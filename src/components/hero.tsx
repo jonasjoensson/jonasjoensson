@@ -1,16 +1,17 @@
-import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import heroImage from "../assets/jonas.jpeg";
-import { Button } from "./ui/button";
-import { parseAsBoolean, useQueryState } from "nuqs";
+import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons"
+import { parseAsBoolean, useQueryState } from "nuqs"
+import heroImage from "../assets/jonas.jpeg"
+import { Button } from "./ui/button"
 
 const Hero = () => {
   const [showHidden, setShowHidden] = useQueryState(
     "showHidden",
     parseAsBoolean.withDefault(false)
-  );
+  )
 
   return (
     <div className="mt-16 md:mt-32">
+      {/** biome-ignore lint/a11y/useKeyWithClickEvents: **/}
       <img
         src={heroImage}
         alt="Jonas Jönsson"
@@ -20,7 +21,7 @@ const Hero = () => {
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight">
         Jonas Jönsson
       </h1>
-      <p className="text-l mb-2">Senior Web Developer | Malmö, Sweden</p>
+      <p className="text-l mb-2">Senior Software Engineer | Malmö, Sweden</p>
       <div className="flex gap-2">
         <Button variant="default" size="sm" asChild>
           <a href="https://github.com/jonasjoensson">
@@ -34,7 +35,7 @@ const Hero = () => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

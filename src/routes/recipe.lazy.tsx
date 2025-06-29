@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -6,80 +6,80 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+  DialogTrigger
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
-import { useState } from "react";
+  useQuery
+} from "@tanstack/react-query"
+import { useState } from "react"
 
 type RecipeData = {
-  name: string;
-  description: string;
-  image: string;
-  recipeIngredient: string[];
-  recipeInstructions: { text: string }[];
-  keywords: string;
-  recipeCategory: string;
-  recipeCuisine: string;
-  cookTime: string;
-  prepTime: string;
-  totalTime: string;
-};
+  name: string
+  description: string
+  image: string
+  recipeIngredient: string[]
+  recipeInstructions: { text: string }[]
+  keywords: string
+  recipeCategory: string
+  recipeCuisine: string
+  cookTime: string
+  prepTime: string
+  totalTime: string
+}
 
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute } from "@tanstack/react-router"
 
 export const Route = createLazyFileRoute("/recipe")({
-  component: RecipePage,
-});
+  component: RecipePage
+})
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 const fetchRecipeData = async (url: string): Promise<RecipeData> => {
-  const corsProxy = "https://corsproxy.io/?";
-  const response = await fetch(corsProxy + encodeURIComponent(url));
-  const text = await response.text();
+  const corsProxy = "https://corsproxy.io/?"
+  const response = await fetch(corsProxy + encodeURIComponent(url))
+  const text = await response.text()
 
   // Use a DOMParser to parse the HTML and extract the JSON-LD script content
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(text, "text/html");
-  const scriptTag = doc.querySelector('script[type="application/ld+json"]');
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(text, "text/html")
+  const scriptTag = doc.querySelector('script[type="application/ld+json"]')
 
-  console.log(scriptTag);
+  console.log(scriptTag)
 
-  const jsonData = JSON.parse(scriptTag?.innerHTML || "");
+  const jsonData = JSON.parse(scriptTag?.innerHTML || "")
   // Filter for recipe-related JSON-LD data
   const recipeData =
     jsonData["@type"] === "Recipe" ||
     jsonData["@type"] === "HowTo" ||
     jsonData["@type"] === "ItemList"
       ? jsonData
-      : null;
+      : null
 
   // Store in localStorage
-  localStorage.setItem("recipeData", JSON.stringify(recipeData));
+  localStorage.setItem("recipeData", JSON.stringify(recipeData))
 
-  return recipeData;
-};
+  return recipeData
+}
 
 function RecipePage() {
-  const [url, setUrl] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [url, setUrl] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
 
   const { data, error, isLoading, refetch } = useQuery<RecipeData, Error>({
     queryKey: ["recipe", url],
     queryFn: () => fetchRecipeData(url),
-    enabled: false,
-  });
+    enabled: false
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    refetch();
-  };
+    e.preventDefault()
+    refetch()
+  }
 
   return (
     <div className="mx-auto max-w-4xl p-4">
@@ -176,7 +176,7 @@ function RecipePage() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default function Component() {
@@ -184,5 +184,5 @@ export default function Component() {
     <QueryClientProvider client={queryClient}>
       <RecipePage />
     </QueryClientProvider>
-  );
+  )
 }

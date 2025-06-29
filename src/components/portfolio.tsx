@@ -1,63 +1,63 @@
-import { LinkOptions } from "@tanstack/react-router";
-import dkvImage from "../assets/dkv.jpg";
-import flycamImage from "../assets/flycam.jpg";
-import netsImage from "../assets/nets.png";
-import skyttaImage from "../assets/skytta.jpeg";
-import { parseAsBoolean, useQueryState } from "nuqs";
-import { SmartLink } from "./smart-link";
-import { Home } from "lucide-react";
+import type { LinkOptions } from "@tanstack/react-router"
+import { Home } from "lucide-react"
+import { parseAsBoolean, useQueryState } from "nuqs"
+import dkvImage from "../assets/dkv.jpg"
+import flycamImage from "../assets/flycam.jpg"
+import netsImage from "../assets/nets.png"
+import skyttaImage from "../assets/skytta.jpeg"
+import { SmartLink } from "./smart-link"
 
 type Project = {
-  title: string;
-  description: string;
-  imageUrl?: string;
-  icon?: React.ComponentType<{ className?: string; size?: string | number }>;
-  href?: string;
-  linkOptions?: LinkOptions;
-  hidden?: boolean;
-};
+  title: string
+  description: string
+  imageUrl?: string
+  icon?: React.ComponentType<{ className?: string; size?: string | number }>
+  href?: string
+  linkOptions?: LinkOptions
+  hidden?: boolean
+}
 
 const projects: Project[] = [
   {
     title: "SKYTTA | IKEA",
     description: "3D web app for design your own sliding doors.",
     imageUrl: skyttaImage,
-    href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/",
+    href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/"
   },
   {
     title: "Flying Camera Service | Sony",
     description: "Service for people to get filmed by a drone while skiing.",
     imageUrl: flycamImage,
-    href: "https://www.sony.com/",
+    href: "https://www.sony.com/"
   },
   {
     title: "Design system | Nets",
     description: "Help Nets to develop a design system.",
     imageUrl: netsImage,
-    href: "https://www.nets.eu/Innovation",
+    href: "https://www.nets.eu/Innovation"
   },
   {
     title: "Portfolio",
     description: "Previous personal website.",
     imageUrl: dkvImage,
-    href: "https://jonasjoensson.github.io/#portfolio",
+    href: "https://jonasjoensson.github.io/#portfolio"
   },
   {
     title: "Mortgage Calculator",
     description: "A simple mortgage calculator built with React.",
     linkOptions: {
-      to: "/mortgage-calculator",
+      to: "/mortgage-calculator"
     },
     icon: Home,
-    hidden: true, // This project is hidden
-  },
-];
+    hidden: true // This project is hidden
+  }
+]
 
 const Portfolio = () => {
   const [showHidden] = useQueryState(
     "showHidden",
     parseAsBoolean.withDefault(false)
-  );
+  )
 
   return (
     <section id="portfolio" className="mt-20">
@@ -68,11 +68,15 @@ const Portfolio = () => {
         <div className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-2">
           {projects.map((project) => {
             if (project.hidden && !showHidden) {
-              return null; // Skip hidden projects
+              return null // Skip hidden projects
             }
 
             return (
-              <SmartLink linkOptions={project.linkOptions} key={project.title}>
+              <SmartLink
+                key={project.title}
+                href={project.href}
+                linkOptions={project.linkOptions}
+              >
                 <div className="flex gap-2">
                   {project.imageUrl && (
                     <img
@@ -94,12 +98,12 @@ const Portfolio = () => {
                   </div>
                 </div>
               </SmartLink>
-            );
+            )
           })}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Portfolio;
+export default Portfolio
