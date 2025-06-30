@@ -39,15 +39,15 @@ type LoanResult = {
 function MortgageCalculator() {
   const [loanAmount, setLoanAmount] = useQueryState(
     "loanAmount",
-    parseAsInteger.withDefault(2990000)
+    parseAsInteger.withDefault(3000000)
   )
   const [interestRate, setInterestRate] = useQueryState(
     "interestRate",
-    parseAsFloat.withDefault(3.04)
+    parseAsFloat.withDefault(3.0)
   )
   const [monthlyAmortization, setMonthlyAmortization] = useQueryState(
     "monthlyAmortization",
-    parseAsInteger.withDefault(8000)
+    parseAsInteger.withDefault(10000)
   )
   const [birthYear, setBirthYear] = useQueryState(
     "birthYear",

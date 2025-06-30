@@ -1,8 +1,5 @@
 import type { LinkOptions } from "@tanstack/react-router"
-import { Home } from "lucide-react"
-import dkvImage from "../assets/dkv.jpg"
-import flycamImage from "../assets/flycam.jpg"
-import netsImage from "../assets/nets.png"
+import mortgageImage from "../assets/mortgage.jpg"
 import skyttaImage from "../assets/skytta.jpeg"
 import { SmartLink } from "./smart-link"
 
@@ -24,30 +21,12 @@ const projects: Project[] = [
     href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/"
   },
   {
-    title: "Flying Camera Service | Sony",
-    description: "Service for people to get filmed by a drone while skiing.",
-    imageUrl: flycamImage,
-    href: "https://www.sony.com/"
-  },
-  {
-    title: "Design system | Nets",
-    description: "Help Nets to develop a design system.",
-    imageUrl: netsImage,
-    href: "https://www.nets.eu/Innovation"
-  },
-  {
-    title: "Portfolio",
-    description: "Previous personal website.",
-    imageUrl: dkvImage,
-    href: "https://jonasjoensson.github.io/#portfolio"
-  },
-  {
     title: "Mortgage Calculator",
     description: "A simple mortgage calculator built with React.",
+    imageUrl: mortgageImage,
     linkOptions: {
       to: "/mortgage-calculator"
-    },
-    icon: Home
+    }
   }
 ]
 
