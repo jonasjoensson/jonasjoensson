@@ -1,6 +1,5 @@
 import type { LinkOptions } from "@tanstack/react-router"
 import { Home } from "lucide-react"
-import { parseAsBoolean, useQueryState } from "nuqs"
 import dkvImage from "../assets/dkv.jpg"
 import flycamImage from "../assets/flycam.jpg"
 import netsImage from "../assets/nets.png"
@@ -48,17 +47,11 @@ const projects: Project[] = [
     linkOptions: {
       to: "/mortgage-calculator"
     },
-    icon: Home,
-    hidden: true // This project is hidden
+    icon: Home
   }
 ]
 
 const Portfolio = () => {
-  const [showHidden] = useQueryState(
-    "showHidden",
-    parseAsBoolean.withDefault(false)
-  )
-
   return (
     <section id="portfolio" className="mt-20">
       <div className="flex flex-col gap-2">
@@ -67,10 +60,6 @@ const Portfolio = () => {
         </h2>
         <div className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-2">
           {projects.map((project) => {
-            if (project.hidden && !showHidden) {
-              return null // Skip hidden projects
-            }
-
             return (
               <SmartLink
                 key={project.title}

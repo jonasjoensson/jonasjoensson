@@ -1,23 +1,10 @@
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons"
-import { parseAsBoolean, useQueryState } from "nuqs"
-import heroImage from "../assets/jonas.jpeg"
+import { ModeToggle } from "./mode-toggle"
 import { Button } from "./ui/button"
 
 const Hero = () => {
-  const [showHidden, setShowHidden] = useQueryState(
-    "showHidden",
-    parseAsBoolean.withDefault(false)
-  )
-
   return (
     <div className="mt-16 md:mt-32">
-      {/** biome-ignore lint/a11y/useKeyWithClickEvents: **/}
-      <img
-        src={heroImage}
-        alt="Jonas Jönsson"
-        className="h-64 w-64 rounded-xl"
-        onClick={() => setShowHidden(!showHidden)}
-      />
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight">
         Jonas Jönsson
       </h1>
@@ -33,6 +20,7 @@ const Hero = () => {
             <LinkedInLogoIcon /> LinkedIn
           </a>
         </Button>
+        <ModeToggle />
       </div>
     </div>
   )
