@@ -1,5 +1,4 @@
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons"
-import { ModeToggle } from "./mode-toggle"
 import { Button } from "./ui/button"
 
 const Hero = () => {
@@ -20,7 +19,6 @@ const Hero = () => {
             <LinkedInLogoIcon /> LinkedIn
           </a>
         </Button>
-        <ModeToggle />
       </div>
     </div>
   )
