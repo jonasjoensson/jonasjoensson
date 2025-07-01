@@ -1,4 +1,5 @@
 import type { LinkOptions } from "@tanstack/react-router"
+import dkvImage from "../assets/dkv.jpg"
 import mortgageImage from "../assets/mortgage.jpg"
 import skyttaImage from "../assets/skytta.jpeg"
 import { SmartLink } from "./smart-link"
@@ -15,18 +16,25 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "SKYTTA | IKEA",
-    description: "3D web app for design your own sliding doors.",
-    imageUrl: skyttaImage,
-    href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/"
-  },
-  {
     title: "Mortgage Calculator",
-    description: "A simple mortgage calculator built with React.",
+    description: "Tool for estimating mortgage payments using React.",
     imageUrl: mortgageImage,
     linkOptions: {
       to: "/mortgage-calculator"
     }
+  },
+  {
+    title: "SKYTTA @ IKEA",
+    description:
+      "3D web app for customizing and visualizing IKEA SKYTTA sliding doors.",
+    imageUrl: skyttaImage,
+    href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/"
+  },
+  {
+    title: "Portfolio",
+    description: "Showcase of previous projects and personal work.",
+    imageUrl: dkvImage,
+    href: "https://jonasjoensson.github.io/#portfolio"
   }
 ]
 
