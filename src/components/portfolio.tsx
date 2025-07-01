@@ -17,7 +17,7 @@ type Project = {
 const projects: Project[] = [
   {
     title: "Mortgage Calculator",
-    description: "Tool for estimating mortgage payments using React.",
+    description: "Tool for estimating mortgage payments",
     imageUrl: mortgageImage,
     linkOptions: {
       to: "/mortgage-calculator"
@@ -25,14 +25,13 @@ const projects: Project[] = [
   },
   {
     title: "SKYTTA @ IKEA",
-    description:
-      "3D web app for customizing and visualizing IKEA SKYTTA sliding doors.",
+    description: "Design your own IKEA SKYTTA sliding doors",
     imageUrl: skyttaImage,
     href: "https://www.ikea.com/addon-app/skytta/web/latest/?uiPlatform=web&locale=en-GB#/"
   },
   {
     title: "Portfolio",
-    description: "Showcase of previous projects and personal work.",
+    description: "Showcase of previous projects and personal work",
     imageUrl: dkvImage,
     href: "https://jonasjoensson.github.io/#portfolio"
   }
