@@ -40,7 +40,7 @@ const projects: Project[] = [
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="mt-20">
+    <section id="portfolio" className="mt-20 mb-40">
       <div className="flex flex-col gap-2">
         <h2 className="scroll-m-20 text-xl font-extrabold tracking-tight">
           Projects
