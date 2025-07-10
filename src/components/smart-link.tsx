@@ -14,7 +14,6 @@ export function SmartLink({
   className,
   ...props
 }: SmartLinkProps) {
-  console.log(href)
   if (href) {
     return (
       <a

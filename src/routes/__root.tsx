@@ -4,10 +4,8 @@ import { Analytics } from "@vercel/analytics/react"
 export const Route = createRootRoute({
   component: () => (
     <>
-      <main>
-        <Outlet />
-        <Analytics />
-      </main>
+      <Outlet />
+      <Analytics />
       {/* <TanStackRouterDevtools /> */}
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
