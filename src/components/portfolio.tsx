@@ -1,6 +1,5 @@
 import type { LinkOptions } from "@tanstack/react-router"
 import dkvImage from "../assets/dkv.jpg"
-import mortgageImage from "../assets/mortgage.jpg"
 import skyttaImage from "../assets/skytta.jpeg"
 import { SmartLink } from "./smart-link"
 
@@ -15,14 +14,6 @@ type Project = {
 }
 
 const projects: Project[] = [
-  {
-    title: "Mortgage Calculator",
-    description: "Tool for estimating mortgage payments",
-    imageUrl: mortgageImage,
-    linkOptions: {
-      to: "/mortgage-calculator"
-    }
-  },
   {
     title: "SKYTTA @ IKEA",
     description: "Design your own IKEA SKYTTA sliding doors",

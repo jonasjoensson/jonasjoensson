@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as MortgageCalculatorImport } from './routes/mortgage-calculator'
 
 // Create Virtual Routes
 
@@ -27,12 +26,6 @@ const RecipeLazyRoute = RecipeLazyImport.update({
   path: '/recipe',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/recipe.lazy').then((d) => d.Route))
-
-const MortgageCalculatorRoute = MortgageCalculatorImport.update({
-  id: '/mortgage-calculator',
-  path: '/mortgage-calculator',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
@@ -51,13 +44,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/mortgage-calculator': {
-      id: '/mortgage-calculator'
-      path: '/mortgage-calculator'
-      fullPath: '/mortgage-calculator'
-      preLoaderRoute: typeof MortgageCalculatorImport
-      parentRoute: typeof rootRoute
-    }
     '/recipe': {
       id: '/recipe'
       path: '/recipe'
@@ -72,41 +58,36 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
-  '/mortgage-calculator': typeof MortgageCalculatorRoute
   '/recipe': typeof RecipeLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
-  '/mortgage-calculator': typeof MortgageCalculatorRoute
   '/recipe': typeof RecipeLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
-  '/mortgage-calculator': typeof MortgageCalculatorRoute
   '/recipe': typeof RecipeLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mortgage-calculator' | '/recipe'
+  fullPaths: '/' | '/recipe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mortgage-calculator' | '/recipe'
-  id: '__root__' | '/' | '/mortgage-calculator' | '/recipe'
+  to: '/' | '/recipe'
+  id: '__root__' | '/' | '/recipe'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
-  MortgageCalculatorRoute: typeof MortgageCalculatorRoute
   RecipeLazyRoute: typeof RecipeLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
-  MortgageCalculatorRoute: MortgageCalculatorRoute,
   RecipeLazyRoute: RecipeLazyRoute,
 }
 
@@ -123,15 +104,11 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/mortgage-calculator",
         "/recipe"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
-    },
-    "/mortgage-calculator": {
-      "filePath": "mortgage-calculator.tsx"
     },
     "/recipe": {
       "filePath": "recipe.lazy.tsx"
