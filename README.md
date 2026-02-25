@@ -1,15 +1,21 @@
-### Hi, I'm Jonas 👋
+# Hi, I'm Jonas 👋
 
-I solve problems using the web 💻
+Senior Software Engineer in Malmö helping teams ship reliable, fast, and beautiful web products.
 
-- **Senior Software Engineer based in Malmö** 🌍  
-  Crafting elegant solutions with a focus on user experience and performance.
+## What I do
 
-- **Specialties** 🚀
+- **Product-minded engineering** – I translate ambiguous business goals into pragmatic web experiences that feel effortless to use.
+- **Modern web stacks** – Daily driver of React and TypeScript; comfortable owning everything from UX flows to infrastructure.
+- **Quality at speed** – I champion best practices, automated testing, and thoughtful DX so teams can move quickly without trading off reliability.
 
-  - Building modern web applications with **Next.js**, **React**, and **TypeScript**.
-  - Clean, maintainable code with a passion for **best practices**.
-  - Databases and schemas: **Prisma**, **AWS**, and more.
+## Recent focus
 
-- **Let's Connect** 🤝  
-  Reach out to collaborate on open-source projects or chat about **web development** and **design systems**.
+- Building design systems that balance consistency with creative freedom.
+- Optimizing page performance and accessibility for global audiences.
+- Mentoring teams through complex migrations and architecture decisions.
+
+## Let's connect
+
+Have an idea, role, or collaboration in mind? I’m always up for talking about web development, design systems, and product strategy.
+
+[Connect on LinkedIn](https://www.linkedin.com/in/jonasjoensson)
